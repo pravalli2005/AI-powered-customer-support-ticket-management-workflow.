@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Powered Customer Support Ticket Workflow & SLA Operations Platform">
+  <title>SupportOps AI - Autonomous Support Operations Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">SupportOps AI Platform</h1>
+          <p class="brand-subtitle">Autonomous Ticket Intelligence, SLA Engine & Operations Studio</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <span class="status-pill status-live">
+          <span class="pulse-dot"></span> Calendar: Mon-Fri 09:00-18:00 UTC
+        </span>
+        <button id="btn-run-all-tests" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Run Hidden Tests (HT-01 to HT-08)
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI Summary Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-label">Active Tickets</span>
+        <span class="kpi-val" id="kpi-active-tickets">124</span>
+        <span class="kpi-trend text-success">&uarr; 12% today</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">SLA Compliance</span>
+        <span class="kpi-val text-success">98.4%</span>
+        <span class="kpi-trend text-success">Zero unescalated breaches</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Duplicates Merged</span>
+        <span class="kpi-val">19</span>
+        <span class="kpi-trend text-muted">Flurries intercepted</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">KB Auto-Resolved</span>
+        <span class="kpi-val">34</span>
+        <span class="kpi-trend text-success">Zero human touch</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Avg CSAT Rating</span>
+        <span class="kpi-val text-warning">4.9 / 5.0 ⭐</span>
+        <span class="kpi-trend text-muted">98 customer reviews</span>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="main-layout">
+      <!-- Left Column: Input & Advanced Simulators -->
+      <section class="panel input-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="step-badge">1</span>
+            <h2>Conversation Intake & Parser</h2>
+          </div>
+          <span class="tag">AI NLP Engine</span>
+        </div>
+
+        <div class="form-group">
+          <label for="raw-convo-input">Customer Conversation Stream</label>
+          <textarea id="raw-convo-input" rows="4" placeholder="Enter customer message..."></textarea>
+        </div>
+
+        <div class="button-row">
+          <button id="btn-process-ticket" class="btn btn-accent">Process Ticket</button>
+          <button id="btn-sample-missing" class="btn btn-secondary">Missing Info Test</button>
+        </div>
+
+        <!-- Advanced Features Row -->
+        <div class="adv-actions-row">
+          <button id="btn-vague-review" class="btn btn-sm btn-outline">Low Conf Review</button>
+          <button id="btn-kb-resolve" class="btn btn-sm btn-outline">KB Auto-Resolve</button>
+          <button id="btn-toggle-pause" class="btn btn-sm btn-outline">Pause/Resume SLA</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="step-badge">⚡</span>
+            <h3>Hidden-Test Scenarios (HT-01 to HT-08)</h3>
+          </div>
+        </div>
+
+        <div class="scenario-grid">
+          <button class="scenario-card" id="btn-ht01">
+            <div class="sc-badge">HT-01</div>
+            <div class="sc-title">Duplicate Flurry</div>
+            <div class="sc-desc">2 rapid messages merged into single ticket</div>
+          </button>
+          <button class="scenario-card" id="btn-ht02">
+            <div class="sc-badge">HT-02</div>
+            <div class="sc-title">Team Offline Fallback</div>
+            <div class="sc-desc">Primary full/offline &rarr; Backup escalation</div>
+          </button>
+          <button class="scenario-card" id="btn-ht03">
+            <div class="sc-badge">HT-03</div>
+            <div class="sc-title">Weekend Boundary SLA</div>
+            <div class="sc-desc">Fri 17:30 arrival &rarr; Mon 16:30 deadline</div>
+          </button>
+          <button class="scenario-card" id="btn-ht04">
+            <div class="sc-badge">HT-04</div>
+            <div class="sc-title">Runtime Holiday Inject</div>
+            <div class="sc-desc">Adds Monday holiday mid-flight &rarr; Tue deadline</div>
+          </button>
+          <button class="scenario-card" id="btn-ht05">
+            <div class="sc-badge">HT-05</div>
+            <div class="sc-title">SLA Compression</div>
+            <div class="sc-desc">8h &rarr; 4h policy cuts deadline; triggers breach</div>
+          </button>
+          <button class="scenario-card" id="btn-ht06">
+            <div class="sc-badge">HT-06</div>
+            <div class="sc-title">Missing Info Loop</div>
+            <div class="sc-desc">Waiting for customer &rarr; Resumed on reply</div>
+          </button>
+          <button class="scenario-card" id="btn-ht07">
+            <div class="sc-badge">HT-07</div>
+            <div class="sc-title">Multi-Issue Split</div>
+            <div class="sc-desc">Compound issue split to Delivery + Auth</div>
+          </button>
+          <button class="scenario-card" id="btn-ht08">
+            <div class="sc-badge">HT-08</div>
+            <div class="sc-title">Masked PII Handoff</div>
+            <div class="sc-desc">Credit card/email/phone masked for tiers</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Center & Right: Structured Ticket & SLA Monitor -->
+      <section class="panel details-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="step-badge">2</span>
+            <h2>Structured Ticket View & SLA Monitor</h2>
+          </div>
+          <div class="header-badges">
+            <span id="val-confidence-badge" class="badge badge-conf">AI Confidence: 95%</span>
+            <div id="ticket-status-badge" class="badge badge-triaged">TRIAGED</div>
+          </div>
+        </div>
+
+        <div class="ticket-meta-grid">
+          <div class="meta-card">
+            <span class="meta-label">Ticket ID</span>
+            <span id="val-ticket-id" class="meta-val mono">TCK-20261002-0042</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Customer</span>
+            <span id="val-customer" class="meta-val">Rahul Sharma</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Order Ref</span>
+            <span id="val-order" class="meta-val mono">#ORD-4521</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Assigned Route</span>
+            <span id="val-assigned-route" class="meta-val">Delivery Support (Agent Charlie)</span>
+          </div>
+        </div>
+
+        <!-- SLA Gauge & Dynamic Clock -->
+        <div class="sla-container">
+          <div class="sla-header">
+            <div>
+              <h3>Dynamic SLA Monitoring</h3>
+              <p class="text-muted">Calculated strictly within business hours (Excludes Sat/Sun & Holidays)</p>
+            </div>
+            <div class="priority-badge" id="val-priority">HIGH (8h Target)</div>
+          </div>
+
+          <div class="sla-progress-wrap">
+            <div class="sla-progress-bar">
+              <div id="sla-fill" class="sla-fill" style="width: 25%;"></div>
+              <div class="sla-marker-75" title="75% SLA Warning Threshold"></div>
+            </div>
+            <div class="sla-labels">
+              <span>0h (Inception)</span>
+              <span class="marker-label">75% Warning: <b id="val-warning-time">Mon 14:30</b></span>
+              <span>Deadline: <b id="val-deadline-time">Mon 16:30</b></span>
+            </div>
+          </div>
+
+          <div class="sla-stat-cards">
+            <div class="sla-mini-stat">
+              <span class="mini-label">Elapsed Business Time</span>
+              <span id="stat-elapsed" class="mini-val">2h 00m</span>
+            </div>
+            <div class="sla-mini-stat">
+              <span class="mini-label">Remaining Business Time</span>
+              <span id="stat-remaining" class="mini-val">6h 00m</span>
+            </div>
+            <div class="sla-mini-stat">
+              <span class="mini-label">SLA State</span>
+              <span id="stat-risk" class="mini-val text-success">NORMAL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Suggested Response Box -->
+        <div class="suggested-response-card">
+          <div class="section-title-wrap">
+            <h4>🤖 AI Agent Suggested Response</h4>
+            <span class="tag tag-ai">Ready to send</span>
+          </div>
+          <p id="val-suggested-reply" class="suggested-text">
+            "Hi Rahul, thank you for reaching out. I completely understand your concern regarding the delivery status for Order #ORD-4521. I am immediately escalating this with our courier logistics team to expedite dispatch."
+          </p>
+        </div>
+
+        <!-- Live Masked Handoff Preview -->
+        <div class="handoff-section">
+          <div class="section-title-wrap">
+            <h3>Masked Handoff Payload (Tier Escalation)</h3>
+            <span class="tag tag-secure">PII Redacted</span>
+          </div>
+          <pre id="val-masked-handoff" class="code-preview mono">{
+  "ticket_id": "TCK-20261002-0042",
+  "customer_summary": {
+    "name": "Rahul Sharma",
+    "contact": {
+      "masked_email": "r*******a@example.com",
+      "masked_phone": "********3210"
+    }
+  },
+  "sanitized_summary": "Order #ORD-4521 not delivered after 2 attempts",
+  "sla_status": "NORMAL"
+}</pre>
+        </div>
+
+        <!-- Audit Trail -->
+        <div class="audit-section">
+          <h3>Lifecycle Audit Ledger</h3>
+          <div id="audit-log-list" class="audit-list">
+            <div class="audit-item">
+              <span class="audit-time">10:49:57</span>
+              <span class="audit-actor">[AI_PARSER]</span>
+              <span class="audit-text">Extracted Customer: Rahul Sharma, Order #ORD-4521, Category: DELIVERY</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-time">10:50:00</span>
+              <span class="audit-actor">[SLA_ENGINE]</span>
+              <span class="audit-text">Calculated SLA Deadline: Mon 16:30 (Excluding weekend Oct 3-4)</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-time">10:50:02</span>
+              <span class="audit-actor">[ROUTER]</span>
+              <span class="audit-text">Assigned to Delivery Support Agent Charlie (Load: 1/5)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
